@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import server.db.model.User
-import server.service.UserService
+import server.service.user.UserService
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/wasteless")
 class UserController {
 
     @Autowired
@@ -20,15 +20,18 @@ class UserController {
     }
 
     @RequestMapping("/users/add", method = [RequestMethod.POST])
-    fun addUser(@RequestBody user: User) = ResponseEntity.ok(userService.addUser(user.firstName, user.lastName, user.password, user.calorieIntake))
+    fun addUser(@RequestBody user: User) =
+        ResponseEntity.ok(userService.addUser(user.firstName, user.lastName, user.password, user.calorieIntake))
 
     @RequestMapping("/users/update/{userId}", method = [RequestMethod.PUT])
     fun updateUser(@PathVariable userId: Int, @RequestBody user: User) =
         ResponseEntity.ok(userService.updateUser(userId, user.firstName, user.lastName, user.password, user.calorieIntake))
 
     @RequestMapping("/users/delete/{userId}", method = [RequestMethod.DELETE])
-    fun deleteUser(@PathVariable userId: Int) = ResponseEntity.ok(userService.deleteUser(userId))
+    fun deleteUser(@PathVariable userId: Int) =
+        ResponseEntity.ok(userService.deleteUser(userId))
 
     @RequestMapping("/users/sync", method = [RequestMethod.POST])
-    fun syncDatabase(@RequestBody userList: List<User>) = ResponseEntity.ok(userService.syncDatabase(userList.toMutableList()))
+    fun syncDatabase(@RequestBody userList: List<User>) =
+        ResponseEntity.ok(userService.syncDatabase(userList.toMutableList()))
 }

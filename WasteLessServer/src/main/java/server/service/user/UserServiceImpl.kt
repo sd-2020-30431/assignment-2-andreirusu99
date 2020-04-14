@@ -1,18 +1,19 @@
-package server.service
+package server.service.user
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import server.db.model.User
-import server.db.repository.UserRepository
+import server.db.repository.UserRepo
 
 @Service
 class UserServiceImpl : UserService {
 
     @Autowired
-    private lateinit var userRepo: UserRepository
+    private lateinit var userRepo: UserRepo
 
-    override fun getAllUsers(): List<User> = userRepo.findAll()
+    override fun getAllUsers(): List<User> =
+        userRepo.findAll()
 
     override fun addUser(firstName: String, lastName: String, password: String, calorieIntake: Int) {
         println("entered @add")
