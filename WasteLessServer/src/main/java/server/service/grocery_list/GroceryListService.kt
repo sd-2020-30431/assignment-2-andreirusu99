@@ -8,7 +8,7 @@ interface GroceryListService {
 
     fun addList(userId: Int, listName: String)
 
-    fun updateListName(listId: String, newName: String)
+    fun updateList(listId: Int, newName: String)
 
     fun deleteList(listId: Int)
 }

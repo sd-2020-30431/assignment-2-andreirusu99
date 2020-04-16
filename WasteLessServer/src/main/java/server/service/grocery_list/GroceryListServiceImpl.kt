@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import server.db.model.GroceryList
 import server.db.repository.GroceryListRepo
+import javax.transaction.Transactional
 
 @Service
 class GroceryListServiceImpl : GroceryListService {
@@ -15,14 +16,21 @@ class GroceryListServiceImpl : GroceryListService {
         groceryListRepo.getUserLists(userId)
 
     override fun addList(userId: Int, listName: String) {
-        TODO("Not yet implemented")
+        val groceryList = GroceryList(listName = listName, userId = userId)
+        println("List {} stored".format(listName))
+        groceryListRepo.save(groceryList)
     }
 
-    override fun updateListName(listId: String, newName: String) {
-        TODO("Not yet implemented")
+    @Transactional
+    override fun updateList(listId: Int, newName: String) {
+        groceryListRepo.findById(listId).let {
+            it.ifPresent{ list ->
+                list.listName = newName
+            }
+        }
     }
 
     override fun deleteList(listId: Int) {
-        TODO("Not yet implemented")
+        groceryListRepo.deleteById(listId)
     }
 }

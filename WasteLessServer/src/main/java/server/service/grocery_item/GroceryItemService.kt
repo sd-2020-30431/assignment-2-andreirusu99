@@ -5,7 +5,7 @@ import java.util.*
 
 interface GroceryItemService {
 
-    fun getAllItems(listId: Int): List<GroceryItem>
+    fun getListItems(listId: Int): List<GroceryItem>
 
     fun addItem(
         listId: Int,
@@ -16,8 +16,6 @@ interface GroceryItemService {
         consumptionDate: Date,
         expirationDate: Date
     )
-
-    fun removeItem(itemId: Int)
 
     fun updateItem(
         itemId: Int,
