@@ -1,7 +1,8 @@
-package com.example.wasteless
+package com.example.wasteless.page.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.wasteless.R
 
 class MainActivity : AppCompatActivity() {
 
