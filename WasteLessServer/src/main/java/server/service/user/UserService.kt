@@ -4,6 +4,8 @@ import server.db.model.User
 
 interface UserService {
 
+    fun attemptLogin(firstName: String, lastName: String ,password: String): Int
+
     fun getAllUsers(): List<User>
 
     fun addUser(firstName: String, lastName: String, password: String, calorieIntake: Int)

@@ -12,6 +12,13 @@ class UserServiceImpl : UserService {
     @Autowired
     private lateinit var userRepo: UserRepo
 
+    override fun attemptLogin(firstName: String, lastName: String, password: String): Int {
+        val users = userRepo.getMatchingUser(firstName, lastName, password)
+        if(users.size == 1) return users[0].id
+        val user = User(firstName = firstName, lastName = lastName, password = password, calorieIntake = 0)
+        return userRepo.save(user).id
+    }
+
     override fun getAllUsers(): List<User> =
         userRepo.findAll()
 

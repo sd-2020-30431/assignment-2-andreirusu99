@@ -26,6 +26,6 @@ class GroceryListsFragment :
     }
 
     private fun setupObservers() {
-        viewModel.groceryList.observeNonNull(this) { adapter.submitList(it) }
+        viewModel.groceryLists.observeNonNull(this) { adapter.submitList(it) }
     }
 }

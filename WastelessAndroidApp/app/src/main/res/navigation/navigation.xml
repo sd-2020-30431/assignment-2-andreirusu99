@@ -3,14 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/groceryListsFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/groceryListsFragment"
         android:name="com.example.wasteless.page.grocery_list.GroceryListsFragment"
         android:label="GroceryListsFragment"
         tools:layout="@layout/fragment_grocerylists">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.wasteless.page.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_groceryListsFragment"
+            app:destination="@id/groceryListsFragment" />
     </fragment>
 
 </navigation>

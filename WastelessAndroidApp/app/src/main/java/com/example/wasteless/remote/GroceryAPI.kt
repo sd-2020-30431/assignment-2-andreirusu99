@@ -1,19 +1,24 @@
 package com.example.wasteless.remote
 
 import com.example.wasteless.remote.model.GroceryList
+import com.example.wasteless.remote.model.User
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface GroceryAPI {
 
     @GET("/wasteless/lists/get/{userId}")
     suspend fun getUserLists(@Path("userId") userId: Int): List<GroceryList>
+
+    @POST("wasteless/users/login")
+    suspend fun attemptLogin(@Body user: User): Int
+
+    @POST("wasteless/lists/add/{userId}")
+    suspend fun addList(@Path("userId") userId: Int, @Body groceryList: GroceryList)
 
     // The Retrofit class generates an implementation for the interface
     companion object {

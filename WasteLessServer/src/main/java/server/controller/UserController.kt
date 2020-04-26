@@ -13,6 +13,10 @@ class UserController {
     @Autowired
     private lateinit var userService: UserService
 
+    @RequestMapping("users/login", method = [RequestMethod.POST])
+    fun loginUser(@RequestBody user: User): ResponseEntity<Int> =
+            ResponseEntity.ok(userService.attemptLogin(user.firstName, user.lastName, user.password))
+
     @RequestMapping("/users/all", method = [RequestMethod.GET])
     fun getAllUsers(): ResponseEntity<List<User>> {
         println("\"/users/all\" received")
