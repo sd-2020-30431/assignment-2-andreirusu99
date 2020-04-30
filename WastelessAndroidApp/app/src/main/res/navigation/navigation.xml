@@ -11,8 +11,9 @@
         android:label="GroceryListsFragment"
         tools:layout="@layout/fragment_grocerylists">
         <argument
+            android:defaultValue="-1"
             android:name="userId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 
     <fragment

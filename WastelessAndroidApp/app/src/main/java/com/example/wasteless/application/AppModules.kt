@@ -1,5 +1,6 @@
 package com.example.wasteless.application
 
+import com.example.wasteless.page.grocery_item.GroceryItemViewModel
 import com.example.wasteless.page.grocery_list.GroceryListViewModel
 import com.example.wasteless.page.login.LoginViewModel
 import com.example.wasteless.page.main.MainActivityViewModel
@@ -13,6 +14,7 @@ object AppModules {
         viewModel { MainActivityViewModel() }
         viewModel { GroceryListViewModel(get()) }
         viewModel { LoginViewModel(get()) }
+        viewModel { GroceryItemViewModel(get()) }
     }
 
     private val remoteModule = module {

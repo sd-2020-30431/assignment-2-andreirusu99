@@ -15,9 +15,8 @@ class GroceryListsFragment :
         GroceryListAdapter { handleOnCampaignItemClick(it) }
     }
 
-
     private fun handleOnCampaignItemClick(it: GroceryList) {
-
+        println("List " + it.listName + " clicked")
     }
 
     override fun setupViews() {

@@ -13,12 +13,22 @@ class MainActivityViewModel : ViewModel() {
     val cmd: LiveData<Command>
         get() = _cmd
 
-    private val _loggedInUserId = MutableLiveData<Int>()
-    val loggedInUserId : LiveData<Int>
-        get() = _loggedInUserId
+    companion object {
+        private val _loggedInUserId = MutableLiveData<Int>()
+        val loggedInUserId: LiveData<Int>
+            get() = _loggedInUserId
 
-    fun setLoggedInUserId(userId: Int){
-        _loggedInUserId.postValue(userId)
+        fun setLoggedInUserId(userId: Int) {
+            _loggedInUserId.postValue(userId)
+        }
+
+        private val _selectedListId = MutableLiveData<Int>()
+        val selectedListId: LiveData<Int>
+            get() = _selectedListId
+
+        fun setSelectedListId(listId: Int){
+            _selectedListId.postValue(listId)
+        }
     }
 
     sealed class Command : BaseEvent {
