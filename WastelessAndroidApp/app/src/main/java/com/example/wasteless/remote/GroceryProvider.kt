@@ -2,6 +2,7 @@ package com.example.wasteless.remote
 
 import com.example.wasteless.remote.GroceryAPI
 import com.example.wasteless.remote.Result
+import com.example.wasteless.remote.model.GroceryItem
 import com.example.wasteless.remote.model.GroceryList
 import com.example.wasteless.remote.model.User
 import kotlinx.coroutines.Dispatchers
@@ -37,5 +38,19 @@ class GroceryProvider : KoinComponent {
         }
     }
 
+    suspend fun getListItems(listId: Int) = withContext(Dispatchers.IO){
+        return@withContext try {
+            Result.Success(retrofit.getListItems(listId))
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+    }
 
+    suspend fun addItem(listId: Int, groceryItem: GroceryItem) = withContext(Dispatchers.IO){
+        return@withContext try {
+            Result.Success(retrofit.addItem(listId, groceryItem))
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+    }
 }

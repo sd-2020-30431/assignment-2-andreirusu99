@@ -16,9 +16,8 @@ class LoginFragment :
     override fun setupViews() {
         viewModel.navigateToGroceryListsFragment.observeNonNull(this) {
             if(it)
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToGroceryListsFragment(
-                    MainActivityViewModel.loggedInUserId.value!!
-                ))
+                findNavController()
+                    .navigate(LoginFragmentDirections.actionLoginFragmentToGroceryListsFragment())
         }
     }
 }

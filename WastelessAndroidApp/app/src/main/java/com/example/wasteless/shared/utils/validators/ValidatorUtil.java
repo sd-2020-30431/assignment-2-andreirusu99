@@ -15,7 +15,7 @@ public abstract class ValidatorUtil {
     }
 
     public static boolean isDateValid(String date){
-        return date.matches("\\d{2}/\\d{2}/\\d{4}"); // "dd/mm/yyyy" format
+        return date.matches("\\d{4}-\\d{2}-\\d{2}"); // "yyyy-mm-dd" format
     }
 
     public static boolean isListNameValid(String name){

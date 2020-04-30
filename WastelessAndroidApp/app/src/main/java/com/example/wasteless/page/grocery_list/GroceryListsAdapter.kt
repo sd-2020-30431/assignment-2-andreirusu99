@@ -6,7 +6,7 @@ import com.example.wasteless.R
 import com.example.wasteless.remote.model.GroceryList
 import com.example.wasteless.shared.base.BaseAdapter
 
-class GroceryListAdapter(private val onItemClick: (GroceryList) -> Unit) :
+class GroceryListsAdapter(private val onItemClick: (GroceryList) -> Unit) :
     BaseAdapter<GroceryList, ItemGroceryListBinding>(
         R.layout.item_grocery_list,
         object : DiffUtil.ItemCallback<GroceryList>() {

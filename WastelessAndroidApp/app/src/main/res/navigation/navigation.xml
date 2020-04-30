@@ -6,17 +6,6 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/groceryListsFragment"
-        android:name="com.example.wasteless.page.grocery_list.GroceryListsFragment"
-        android:label="GroceryListsFragment"
-        tools:layout="@layout/fragment_grocerylists">
-        <argument
-            android:defaultValue="-1"
-            android:name="userId"
-            app:argType="integer" />
-    </fragment>
-
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.wasteless.page.login.LoginFragment"
         android:label="LoginFragment"
@@ -26,5 +15,23 @@
             android:id="@+id/action_loginFragment_to_groceryListsFragment"
             app:destination="@id/groceryListsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/groceryListsFragment"
+        android:name="com.example.wasteless.page.grocery_list.GroceryListsFragment"
+        android:label="GroceryListsFragment"
+        tools:layout="@layout/fragment_grocerylists">
+        <action
+            android:id="@+id/action_groceryListsFragment_to_groceryItemsFragment"
+            app:destination="@id/groceryItemsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groceryItemsFragment"
+        android:name="com.example.wasteless.page.grocery_item.GroceryItemsFragment"
+        android:label="GroceryItemsFragment"
+        tools:layout="@layout/fragment_groceryitems">
+    </fragment>
+
 
 </navigation>

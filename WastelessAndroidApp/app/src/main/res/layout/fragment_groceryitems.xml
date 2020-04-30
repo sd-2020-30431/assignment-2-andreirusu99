@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.wasteless.page.grocery_item.GroceryItemViewModel" />
+            type="com.example.wasteless.page.grocery_item.GroceryItemsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +41,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Name"
+            android:text="@={viewModel.newItemName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/items_recycler" />
@@ -52,6 +53,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Quantity"
+            android:text="@={viewModel.newItemQuantity}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_name" />
@@ -63,6 +65,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Calories"
+            android:text="@={viewModel.newItemCalories}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_quantity" />
@@ -74,6 +77,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Purchase Date"
+            android:text="@={viewModel.newItemPurchase}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_calories" />
@@ -85,6 +89,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Consumption Date"
+            android:text="@={viewModel.newItemConsumption}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_purchase" />
@@ -96,6 +101,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Expiration Date"
+            android:text="@={viewModel.newItemExpiration}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_consumption" />
@@ -106,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="ADD ITEM"
+            android:onClick="@{() -> viewModel.addItemFromAPI()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_item_expiration" />
