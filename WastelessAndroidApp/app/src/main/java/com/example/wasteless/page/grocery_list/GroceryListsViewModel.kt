@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.wasteless.page.main.MainActivityViewModel
 import com.example.wasteless.remote.GroceryProvider
 import com.example.wasteless.remote.model.GroceryList
+import com.example.wasteless.remote.model.User
 import com.example.wasteless.remote.successOr
+import com.example.wasteless.shared.utils.validators.ValidatorUtil
 import kotlinx.coroutines.launch
 
 class GroceryListsViewModel(private val groceryProvider: GroceryProvider) : ViewModel() {
@@ -25,8 +27,7 @@ class GroceryListsViewModel(private val groceryProvider: GroceryProvider) : View
         get() = _groceryLists
 
     val newListName = MutableLiveData<String>().apply { value = "" }
-
-    val navigateToGroceryItemsFragment = MutableLiveData<Boolean>().apply { value = false }
+    val newCalorieIntake = MutableLiveData<String>().apply { value = "" }
 
     private fun getUserListsFromAPI() {
         viewModelScope.launch {
@@ -42,8 +43,14 @@ class GroceryListsViewModel(private val groceryProvider: GroceryProvider) : View
         }
     }
 
-    fun goToListItems(listId: Int){
-        navigateToGroceryItemsFragment.postValue(true)
+    fun updateCalorieIntake(){
+        viewModelScope.launch {
+            if(ValidatorUtil.isNumberValid(newCalorieIntake.value)){
+                groceryProvider.updateUser(userId, newCalorieIntake.value?.toInt()!!)
+            } else {
+                println("Invalid calories!")
+            }
+        }
     }
 
 }

@@ -28,8 +28,8 @@ class UserController {
         ResponseEntity.ok(userService.addUser(user.firstName, user.lastName, user.password, user.calorieIntake))
 
     @RequestMapping("/users/update/{userId}", method = [RequestMethod.PUT])
-    fun updateUser(@PathVariable userId: Int, @RequestBody user: User) =
-        ResponseEntity.ok(userService.updateUser(userId, user.firstName, user.lastName, user.password, user.calorieIntake))
+    fun updateUser(@PathVariable userId: Int, @RequestBody calories: Int) =
+        ResponseEntity.ok(userService.updateUser(userId, calories))
 
     @RequestMapping("/users/delete/{userId}", method = [RequestMethod.DELETE])
     fun deleteUser(@PathVariable userId: Int) =

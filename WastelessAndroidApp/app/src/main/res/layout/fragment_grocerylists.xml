@@ -27,7 +27,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lists_recycler"
             android:layout_width="200dp"
-            android:layout_height="300dp"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             android:id="@+id/new_list_name_tf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp"
             android:hint="New List name"
             android:text="@={viewModel.newListName}"
             app:layout_constraintBottom_toTopOf="@id/add_list_button"
@@ -53,7 +53,29 @@
             android:layout_marginBottom="200dp"
             android:onClick="@{() -> viewModel.addListFromAPI(viewModel.newListName)}"
             android:text="ADD LIST"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_list_name_tf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/calorie_intake_tf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Calorie intake"
+            android:text="@={viewModel.newCalorieIntake}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_list_button" />
+
+        <Button
+            android:id="@+id/add_calorie_intake_button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="200dp"
+            android:onClick="@{() -> viewModel.updateCalorieIntake()}"
+            android:text="SET"
+            app:layout_constraintTop_toBottomOf="@id/calorie_intake_tf"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

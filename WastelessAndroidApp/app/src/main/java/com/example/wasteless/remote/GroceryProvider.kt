@@ -53,4 +53,12 @@ class GroceryProvider : KoinComponent {
             Result.Error(ex)
         }
     }
+
+    suspend fun updateUser(userId: Int, calories: Int) = withContext(Dispatchers.IO) {
+        return@withContext try {
+            Result.Success(retrofit.updateUser(userId, calories))
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+    }
 }

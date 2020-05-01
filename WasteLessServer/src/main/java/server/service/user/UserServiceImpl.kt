@@ -1,6 +1,7 @@
 package server.service.user
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import server.db.model.User
@@ -14,7 +15,7 @@ class UserServiceImpl : UserService {
 
     override fun attemptLogin(firstName: String, lastName: String, password: String): Int {
         val users = userRepo.getMatchingUser(firstName, lastName, password)
-        if(users.size == 1) return users[0].id
+        if(users.isNotEmpty()) return users[0].id
         val user = User(firstName = firstName, lastName = lastName, password = password, calorieIntake = 0)
         return userRepo.save(user).id
     }
@@ -30,12 +31,9 @@ class UserServiceImpl : UserService {
     }
 
     @Transactional
-    override fun updateUser(id: Int, firstName: String, lastName: String, password: String, calorieIntake: Int) =
+    override fun updateUser(id: Int, calorieIntake: Int) =
         userRepo.findById(id).let {
             it.ifPresent { user ->
-                user.firstName = firstName
-                user.lastName = lastName
-                user.password = password
                 user.calorieIntake = calorieIntake
             }
         }

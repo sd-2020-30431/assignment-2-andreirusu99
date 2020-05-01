@@ -12,8 +12,14 @@ import retrofit2.http.*
 
 interface GroceryAPI {
 
+    @GET("wasteless/users/all")
+    suspend fun getUsers(): List<User>
+
     @GET("/wasteless/lists/get/{userId}")
     suspend fun getUserLists(@Path("userId") userId: Int): List<GroceryList>
+
+    @PUT("wasteless/users/update/{userId}")
+    suspend fun updateUser(@Path("userId") userId: Int, @Body calories: Int)
 
     @POST("wasteless/users/login")
     suspend fun attemptLogin(@Body user: User): Int
@@ -26,6 +32,8 @@ interface GroceryAPI {
 
     @POST("wasteless/items/add/{listId}")
     suspend fun addItem(@Path("listId") listId: Int, @Body groceryItem: GroceryItem)
+
+
 
     // The Retrofit class generates an implementation for the interface
     companion object {

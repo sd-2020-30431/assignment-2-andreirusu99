@@ -1,6 +1,7 @@
 package com.example.wasteless.page.grocery_item
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.wasteless.GroceryItemBinding
 import com.example.wasteless.R
@@ -12,6 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class GroceryItemsFragment :
     BaseFragment<GroceryItemBinding, GroceryItemsViewModel>(R.layout.fragment_groceryitems){
 
+    private val TAG = "GroceryItemsFragment"
     override val viewModel by viewModel<GroceryItemsViewModel>()
     private val adapter by lazy {
         GroceryItemsAdapter{ handleOnCampaignItemClick(it) }
@@ -24,7 +26,8 @@ class GroceryItemsFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt("LIST_ID")?.let {
-            viewModel.listId = it
+            Log.d("$TAG:onViewCreated:LISTD_ID argument: ", it.toString())
+            viewModel.getListItemsFromAPIById(it)
         }
     }
 
