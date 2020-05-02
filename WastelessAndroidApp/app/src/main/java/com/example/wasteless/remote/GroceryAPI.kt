@@ -15,6 +15,9 @@ interface GroceryAPI {
     @GET("wasteless/users/all")
     suspend fun getUsers(): List<User>
 
+    @GET("wasteless/users/waste/{userId}")
+    suspend fun getUserWaste(@Path("userId") userId: Int): Int
+
     @GET("/wasteless/lists/get/{userId}")
     suspend fun getUserLists(@Path("userId") userId: Int): List<GroceryList>
 

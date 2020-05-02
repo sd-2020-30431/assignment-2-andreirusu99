@@ -14,6 +14,14 @@ class GroceryProvider : KoinComponent {
 
     private val retrofit by inject<GroceryAPI>()
 
+    suspend fun getUsers() = withContext(Dispatchers.IO) {
+        return@withContext try {
+            Result.Success(retrofit.getUsers())
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+    }
+
     suspend fun getUserLists(userId: Int) = withContext(Dispatchers.IO) {
         return@withContext try {
             Result.Success(retrofit.getUserLists(userId))
@@ -22,15 +30,23 @@ class GroceryProvider : KoinComponent {
         }
     }
 
-    suspend fun attemptLogin(user: User) = withContext(Dispatchers.IO){
-        return@withContext try{
-            Result.Success(retrofit.attemptLogin(user))
-        } catch (ex: Exception){
+    suspend fun getUserWaste(userId: Int) = withContext(Dispatchers.IO) {
+        return@withContext try {
+            Result.Success(retrofit.getUserWaste(userId))
+        } catch (ex: Exception) {
             Result.Error(ex)
         }
     }
 
-    suspend fun addList(userId: Int, groceryList: GroceryList) = withContext(Dispatchers.IO){
+    suspend fun attemptLogin(user: User) = withContext(Dispatchers.IO) {
+        return@withContext try {
+            Result.Success(retrofit.attemptLogin(user))
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+    }
+
+    suspend fun addList(userId: Int, groceryList: GroceryList) = withContext(Dispatchers.IO) {
         return@withContext try {
             Result.Success(retrofit.addList(userId, groceryList))
         } catch (ex: Exception) {
@@ -38,7 +54,7 @@ class GroceryProvider : KoinComponent {
         }
     }
 
-    suspend fun getListItems(listId: Int) = withContext(Dispatchers.IO){
+    suspend fun getListItems(listId: Int) = withContext(Dispatchers.IO) {
         return@withContext try {
             Result.Success(retrofit.getListItems(listId))
         } catch (ex: Exception) {
@@ -46,7 +62,7 @@ class GroceryProvider : KoinComponent {
         }
     }
 
-    suspend fun addItem(listId: Int, groceryItem: GroceryItem) = withContext(Dispatchers.IO){
+    suspend fun addItem(listId: Int, groceryItem: GroceryItem) = withContext(Dispatchers.IO) {
         return@withContext try {
             Result.Success(retrofit.addItem(listId, groceryItem))
         } catch (ex: Exception) {

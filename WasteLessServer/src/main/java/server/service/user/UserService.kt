@@ -8,6 +8,8 @@ interface UserService {
 
     fun getAllUsers(): List<User>
 
+    fun getWaste(userId: Int): Int
+
     fun addUser(firstName: String, lastName: String, password: String, calorieIntake: Int)
 
     fun updateUser(id: Int, calorieIntake: Int)

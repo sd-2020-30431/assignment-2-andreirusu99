@@ -22,18 +22,18 @@ class GroceryItemsViewModel(private val groceryProvider: GroceryProvider) : View
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private val _listId = MutableLiveData<Int>().apply { value = -1 }
 
+    private val _groceryItems = MutableLiveData<List<GroceryItem>>()
+    val groceryItems: LiveData<List<GroceryItem>>
+        get() = _groceryItems
+
     fun getListItemsFromAPIById(listId: Int) {
         viewModelScope.launch {
-            Log.d("$TAG:getListItemsFromAPI:listId: ", listId.toString())
+            Log.d("$TAG: getListItemsFromAPIById: listId: ", listId.toString())
             _listId.postValue(listId)
             val items = groceryProvider.getListItems(listId)
             _groceryItems.value = items.successOr(listOf())
         }
     }
-
-    private val _groceryItems = MutableLiveData<List<GroceryItem>>()
-    val groceryItems: LiveData<List<GroceryItem>>
-        get() = _groceryItems
 
     val newItemName = MutableLiveData<String>().apply { value = "" }
     val newItemQuantity = MutableLiveData<String>().apply { value = "" }
@@ -44,7 +44,7 @@ class GroceryItemsViewModel(private val groceryProvider: GroceryProvider) : View
 
     fun addItemFromAPI() {
         viewModelScope.launch {
-            Log.d("$TAG:addItemFromAPI:listId: ", _listId.toString())
+            Log.d("$TAG:addItemFromAPI:listId: ", _listId.value.toString())
 
             if (ValidatorUtil.isNameValid(newItemName.value)
                 && ValidatorUtil.isNumberValid(newItemQuantity.value)

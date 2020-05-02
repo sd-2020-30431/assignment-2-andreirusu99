@@ -23,6 +23,10 @@ class UserController {
         return ResponseEntity.ok(userService.getAllUsers())
     }
 
+    @RequestMapping("/users/waste/{userId}", method = [RequestMethod.GET])
+    fun getUserWaste(@PathVariable userId: Int): ResponseEntity<Int> =
+            ResponseEntity.ok(userService.getWaste(userId))
+
     @RequestMapping("/users/add", method = [RequestMethod.POST])
     fun addUser(@RequestBody user: User) =
         ResponseEntity.ok(userService.addUser(user.firstName, user.lastName, user.password, user.calorieIntake))

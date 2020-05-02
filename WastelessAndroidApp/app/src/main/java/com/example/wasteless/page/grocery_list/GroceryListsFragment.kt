@@ -2,6 +2,7 @@ package com.example.wasteless.page.grocery_list
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.wasteless.GroceryListBinding
 import com.example.wasteless.R
@@ -40,5 +41,12 @@ class GroceryListsFragment :
 
     private fun setupObservers() {
         viewModel.groceryLists.observeNonNull(this) { adapter.submitList(it) }
+        viewModel.wasteLevel.observeNonNull(this) {
+            Log.i("$TAG: setupObservers: wasteLevel: ", it.toString())
+
+            if (viewModel.wasteLevel.value?.compareTo(viewModel.userCalories / 7)!! > 1) {
+                Toast.makeText(activity, "Waste levels too high!", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

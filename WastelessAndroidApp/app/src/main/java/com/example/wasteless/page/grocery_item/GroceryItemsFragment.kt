@@ -11,12 +11,12 @@ import com.example.wasteless.shared.utils.extensions.observeNonNull
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GroceryItemsFragment :
-    BaseFragment<GroceryItemBinding, GroceryItemsViewModel>(R.layout.fragment_groceryitems){
+    BaseFragment<GroceryItemBinding, GroceryItemsViewModel>(R.layout.fragment_groceryitems) {
 
     private val TAG = "GroceryItemsFragment"
     override val viewModel by viewModel<GroceryItemsViewModel>()
     private val adapter by lazy {
-        GroceryItemsAdapter{ handleOnCampaignItemClick(it) }
+        GroceryItemsAdapter { handleOnCampaignItemClick(it) }
     }
 
     private fun handleOnCampaignItemClick(it: GroceryItem) {
@@ -36,7 +36,7 @@ class GroceryItemsFragment :
         setupObservers()
     }
 
-    private fun setupObservers(){
-        viewModel.groceryItems.observeNonNull(this){ adapter.submitList(it) }
+    private fun setupObservers() {
+        viewModel.groceryItems.observeNonNull(this) { adapter.submitList(it) }
     }
 }

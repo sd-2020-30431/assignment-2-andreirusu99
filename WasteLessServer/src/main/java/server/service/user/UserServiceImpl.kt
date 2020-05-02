@@ -1,7 +1,6 @@
 package server.service.user
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import server.db.model.User
@@ -15,13 +14,17 @@ class UserServiceImpl : UserService {
 
     override fun attemptLogin(firstName: String, lastName: String, password: String): Int {
         val users = userRepo.getMatchingUser(firstName, lastName, password)
-        if(users.isNotEmpty()) return users[0].id
+        if (users.isNotEmpty()) return users[0].id
         val user = User(firstName = firstName, lastName = lastName, password = password, calorieIntake = 0)
         return userRepo.save(user).id
     }
 
     override fun getAllUsers(): List<User> =
-        userRepo.findAll()
+            userRepo.findAll()
+
+    override fun getWaste(userId: Int): Int =
+        userRepo.findById(userId).get().calorieIntake
+
 
     override fun addUser(firstName: String, lastName: String, password: String, calorieIntake: Int) {
         println("entered @add")
@@ -32,11 +35,11 @@ class UserServiceImpl : UserService {
 
     @Transactional
     override fun updateUser(id: Int, calorieIntake: Int) =
-        userRepo.findById(id).let {
-            it.ifPresent { user ->
-                user.calorieIntake = calorieIntake
+            userRepo.findById(id).let {
+                it.ifPresent { user ->
+                    user.calorieIntake = calorieIntake
+                }
             }
-        }
 
     override fun deleteUser(id: Int) {
         userRepo.deleteById(id)
