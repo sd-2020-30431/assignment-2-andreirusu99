@@ -2,6 +2,7 @@ package com.example.wasteless.remote
 
 import com.example.wasteless.remote.model.GroceryItem
 import com.example.wasteless.remote.model.GroceryList
+import com.example.wasteless.remote.model.ReportDTO
 import com.example.wasteless.remote.model.User
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -14,6 +15,9 @@ interface GroceryAPI {
 
     @GET("wasteless/users/all")
     suspend fun getUsers(): List<User>
+
+    @GET("wasteless/report/{userId}/{type}")
+    suspend fun getReport(@Path("userId") userId: Int, @Path("type") type: String): ReportDTO
 
     @GET("wasteless/users/waste/{userId}")
     suspend fun getUserWaste(@Path("userId") userId: Int): Int
@@ -35,8 +39,6 @@ interface GroceryAPI {
 
     @POST("wasteless/items/add/{listId}")
     suspend fun addItem(@Path("listId") listId: Int, @Body groceryItem: GroceryItem)
-
-
 
     // The Retrofit class generates an implementation for the interface
     companion object {

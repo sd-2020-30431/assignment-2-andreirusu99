@@ -42,7 +42,7 @@ class GroceryListsViewModel(private val groceryProvider: GroceryProvider) : View
         }
     }
 
-    fun getUserWasteFromAPI(){
+    private fun getUserWasteFromAPI(){
         viewModelScope.launch {
             wasteLevel.postValue(groceryProvider.getUserWaste(userId).successOr(0))
         }
@@ -78,6 +78,18 @@ class GroceryListsViewModel(private val groceryProvider: GroceryProvider) : View
             }
             getUserWasteFromAPI()
             getUserCaloriesFromAPI()
+        }
+    }
+
+    fun generateWeeklyReport(){
+        viewModelScope.launch {
+            val reportDTO = groceryProvider.getReport(userId, "WEEKLY")
+        }
+    }
+
+    fun generateMonthlyReport(){
+        viewModelScope.launch {
+            val reportDTO = groceryProvider.getReport(userId, "MONTHLY")
         }
     }
 

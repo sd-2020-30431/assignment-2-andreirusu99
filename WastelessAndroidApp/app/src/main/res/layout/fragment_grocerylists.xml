@@ -38,7 +38,7 @@
             android:id="@+id/new_list_name_tf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:hint="New List name"
             android:text="@={viewModel.newListName}"
             app:layout_constraintBottom_toTopOf="@id/add_list_button"
@@ -53,9 +53,9 @@
             android:layout_marginBottom="200dp"
             android:onClick="@{() -> viewModel.addListFromAPI(viewModel.newListName)}"
             android:text="ADD LIST"
-            app:layout_constraintTop_toBottomOf="@id/new_list_name_tf"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_list_name_tf" />
 
         <EditText
             android:id="@+id/calorie_intake_tf"
@@ -75,9 +75,31 @@
             android:layout_marginBottom="200dp"
             android:onClick="@{() -> viewModel.updateCalorieIntake()}"
             android:text="SET"
-            app:layout_constraintTop_toBottomOf="@id/calorie_intake_tf"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calorie_intake_tf" />
+
+        <Button
+            android:id="@+id/generate_weekly_report_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{() -> viewModel.generateWeeklyReport()}"
+            android:text="GENERATE\nWEEKLY\nREPORT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/generate_monthly_report_button"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/generate_monthly_report_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{() -> viewModel.generateMonthlyReport()}"
+            android:text="GENERATE\nMONTHLY\nREPORT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/generate_weekly_report_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

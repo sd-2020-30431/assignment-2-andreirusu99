@@ -77,4 +77,12 @@ class GroceryProvider : KoinComponent {
             Result.Error(ex)
         }
     }
+
+    suspend fun getReport(userId: Int, reportType: String) = withContext(Dispatchers.IO){
+        return@withContext try{
+            Result.Success(retrofit.getReport(userId, reportType))
+        } catch (ex: Exception){
+            Result.Error(ex)
+        }
+    }
 }
